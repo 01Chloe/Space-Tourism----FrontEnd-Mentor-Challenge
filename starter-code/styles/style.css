@@ -1,0 +1,913 @@
+@import url("https://fonts.googleapis.com/css2?family=Bellefair&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;400&display=swap");
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #0B0D17;
+  color: #fff;
+  font-family: "Barlow Condensed", sans-serif;
+}
+
+header {
+  overflow-x: hidden;
+  position: relative;
+}
+header .logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+  animation: headerAnim 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+header nav {
+  display: flex;
+  flex-direction: column;
+  transform: translateX(calc(100% + 20px));
+  transition: transform 0.3s ease-out;
+  height: 100vh;
+  padding: 80px 30px;
+  -webkit-backdrop-filter: blur(50px);
+          backdrop-filter: blur(50px);
+}
+header nav .nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 100;
+  margin: 15px 0;
+  transition: transform 0.3s ease-out;
+  text-transform: uppercase;
+}
+header nav .nav-link:hover {
+  transform: translateX(5px);
+}
+header nav .nav-link span {
+  font-weight: 500;
+  margin-right: 5px;
+}
+header nav.active {
+  transform: translateX(calc(100% - 180px));
+  position: relative;
+  z-index: 5;
+}
+header .menu-btn {
+  width: 30px;
+  height: 50px;
+  position: fixed;
+  top: 40px;
+  right: 20px;
+  z-index: 5;
+  opacity: 0;
+  animation: headerAnim 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+  cursor: pointer;
+}
+header .menu-btn .lines-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .menu-btn .lines-container .line {
+  width: 100%;
+  height: 3px;
+  background: #D0D6F9;
+  position: relative;
+}
+header .menu-btn .lines-container .line::before {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #D0D6F9;
+  transition: transform 0.3s ease-out;
+}
+header .menu-btn .lines-container .line::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #D0D6F9;
+  transition: transform 0.3s ease-out;
+}
+header .menu-btn .lines-container .line.active {
+  background: transparent;
+}
+header .menu-btn .lines-container .line.active::before {
+  bottom: 0;
+  transform: rotate(135deg);
+  transition: transform 0.3 0.2s ease-out;
+}
+header .menu-btn .lines-container .line.active::after {
+  top: 0;
+  transform: rotate(-135deg);
+  transition: transform 0.3 0.2s ease-out;
+}
+
+@keyframes headerAnim {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media screen and (min-width: 700px) {
+  header nav {
+    flex-direction: row;
+    transform: none;
+    height: 80px;
+    width: 400px;
+    padding: 25px 10px 0;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 5;
+    opacity: 0;
+    animation: headerAnim 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+  }
+  header nav .nav-link {
+    margin: 0 20px;
+    font-size: 16px;
+    position: relative;
+  }
+  header nav .nav-link:hover {
+    transform: none;
+  }
+  header nav .nav-link::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2.5px;
+    background: #fff;
+    transition: width 0.3s ease-out;
+  }
+  header nav .nav-link:hover::after {
+    width: 100%;
+    opacity: 0.6;
+  }
+  header nav .nav-link span {
+    display: none;
+  }
+  header nav .nav-link.active-nav::after {
+    width: 100%;
+    opacity: 1;
+  }
+  header .menu-btn {
+    display: none;
+  }
+}
+@media screen and (min-width: 950px) {
+  header nav {
+    width: 700px;
+  }
+  header nav .nav-link {
+    margin: 0 40px;
+  }
+  header nav .nav-link span {
+    display: inline-block;
+  }
+}
+.home {
+  display: none;
+}
+
+.home.active {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  padding: 80px 15px 0;
+  text-align: center;
+}
+.home.active h2 {
+  font-weight: 400;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 4.75px;
+  margin: 40px 0 25px;
+  color: #D0D6F9;
+  opacity: 0;
+  animation: firstTitleAnim 0.5s 0.1s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.home.active h1 {
+  font-family: "Bellefair", serif;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 80px;
+  margin-bottom: 25px;
+  opacity: 0;
+  animation: secondTitleAnim 0.6s 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.home.active p {
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #D0D6F9;
+  font-weight: 100;
+  opacity: 0;
+  animation: paraAnim 0.5s 0.2s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.home.active .home-btn {
+  background: #fff;
+  color: #0B0D17;
+  text-transform: uppercase;
+  font-family: "Bellefair", serif;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 70px auto 0;
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 50px;
+  transition: outline 0.2s ease-out;
+  opacity: 0;
+  cursor: pointer;
+  outline: 0 solid rgba(255, 255, 255, 0);
+  animation: scaleAnim 0.5s 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.home.active .home-btn:hover {
+  outline: 40px solid rgba(255, 255, 255, 0.2);
+  transition: outline 0.3s ease-out;
+}
+
+@keyframes firstTitleAnim {
+  0% {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes secondTitleAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes paraAnim {
+  0% {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes scaleAnim {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media screen and (min-width: 700px) {
+  .home.active h2 {
+    font-size: 20px;
+    margin: 20px;
+  }
+  .home.active h1 {
+    font-size: 130px;
+    margin-bottom: 20px;
+  }
+  .home.active p {
+    font-size: 18px;
+    width: 70%;
+    margin: 0 auto;
+  }
+  .home.active .home-btn {
+    margin-top: 30px;
+  }
+}
+@media screen and (min-width: 950px) {
+  .home.active {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+  }
+  .home.active .decor-line {
+    width: 850px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 35px;
+    left: 100px;
+  }
+  .home.active .home-section-text {
+    width: 50%;
+    margin-top: 100px;
+    text-align: left;
+    margin-left: 50px;
+  }
+  .home.active .home-section-text h2 {
+    font-size: 28px;
+  }
+  .home.active .home-section-text h1 {
+    font-size: 150px;
+  }
+  .home.active .home-section-text p {
+    font-size: 18px;
+    width: 100%;
+  }
+  .home.active .home-btn {
+    margin: 200px auto;
+  }
+}
+.destination {
+  display: none;
+}
+
+.destination.active {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  padding: 70px 15px 0;
+  text-align: center;
+}
+.destination.active .dest-side-left .destination-planets h2 {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 100;
+  letter-spacing: 2.35px;
+  margin: 10px 0;
+  opacity: 0;
+  animation: secondTitleAnim 0.5s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.destination.active .dest-side-left .destination-planets h2 span {
+  opacity: 0.6;
+  font-weight: 400;
+  color: #D0D6F9;
+}
+.destination.active .dest-side-left .destination-planets .img-planet {
+  display: none;
+}
+.destination.active .dest-side-left .destination-planets .img-active {
+  display: block;
+  width: 200px;
+  margin: 0 auto 10px;
+  opacity: 0;
+  animation: destImgPlanetAnim 0.7s 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.destination.active .dest-side-right .destination-navigation {
+  height: 30px;
+  opacity: 0;
+  animation: firstTitleAnim 0.3s 0.2s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.destination.active .dest-side-right .destination-navigation .destination-link {
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 100;
+  position: relative;
+}
+.destination.active .dest-side-right .destination-navigation .destination-link::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 0;
+  height: 2.5px;
+  opacity: 0.6;
+  background: #fff;
+  transition: width 0.3s ease-out;
+}
+.destination.active .dest-side-right .destination-navigation .destination-link:hover::after {
+  width: 100%;
+}
+.destination.active .dest-side-right .destination-navigation .active-dest::after {
+  width: 100%;
+  opacity: 1;
+}
+.destination.active .dest-side-right .destination-description .dest-desc {
+  display: none;
+}
+.destination.active .dest-side-right .destination-description .dest-desc.active {
+  display: block;
+}
+.destination.active .dest-side-right .destination-description .dest-desc.active h1 {
+  font-family: "Bellefair", serif;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 56px;
+  opacity: 0;
+  animation: scaleAnim 0.3s 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.destination.active .dest-side-right .destination-description .dest-desc.active p {
+  font-size: 15px;
+  letter-spacing: 1.35px;
+  font-weight: 100;
+  color: #D0D6F9;
+  margin-bottom: 15px;
+  opacity: 0;
+  animation: scaleAnim 0.5s 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.destination.active .dest-side-right .destination-line {
+  width: 100%;
+  height: 0.5px;
+  background: #D0D6F9;
+  opacity: 0.6;
+  margin: 10px 0;
+}
+.destination.active .dest-side-right .destination-infos .distance, .destination.active .dest-side-right .destination-infos .time {
+  display: none;
+}
+.destination.active .dest-side-right .destination-infos .distance.active, .destination.active .dest-side-right .destination-infos .time.active {
+  display: block;
+  opacity: 0;
+  animation: litleTranslateAnim 0.5s 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.destination.active .dest-side-right .destination-infos .distance.active .one, .destination.active .dest-side-right .destination-infos .time.active .one {
+  text-transform: uppercase;
+  color: #D0D6F9;
+  font-weight: 100;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+.destination.active .dest-side-right .destination-infos .distance.active .two, .destination.active .dest-side-right .destination-infos .time.active .two {
+  font-family: "Bellefair", serif;
+  text-transform: uppercase;
+  font-weight: 100;
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+@keyframes destImgPlanetAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotate(180deg);
+  }
+}
+@keyframes litleTranslateAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@media screen and (min-width: 700px) {
+  .destination.active .dest-side-left .destination-planets h2 {
+    text-align: start;
+    font-size: 20px;
+    margin: 30px 0 15px;
+  }
+  .destination.active .dest-side-left .destination-planets .img-active {
+    width: 200px;
+    margin-bottom: 30px;
+  }
+  .destination.active .dest-side-right .destination-navigation {
+    height: 40px;
+  }
+  .destination.active .dest-side-right .destination-navigation .destination-link {
+    font-size: 18px;
+    margin: 0 25px;
+  }
+  .destination.active .dest-side-right .destination-description .dest-desc.active h1 {
+    font-size: 75px;
+  }
+  .destination.active .dest-side-right .destination-description .dest-desc.active p {
+    margin-bottom: 25px;
+  }
+  .destination.active .dest-side-right .destination-infos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .destination.active .dest-side-right .destination-infos .distance.active .one, .destination.active .dest-side-right .destination-infos .time.active .one {
+    margin-bottom: 15px;
+  }
+}
+@media screen and (min-width: 950px) {
+  .destination.active {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    padding-top: 100px;
+  }
+  .destination.active .dest-side-left {
+    width: 50%;
+  }
+  .destination.active .dest-side-left .destination-planets h2 {
+    margin-left: 100px;
+  }
+  .destination.active .dest-side-left .destination-planets .img-active {
+    width: 400px;
+  }
+  .destination.active .dest-side-right {
+    width: 50%;
+    text-align: start;
+  }
+  .destination.active .dest-side-right .destination-navigation {
+    margin-top: 150px;
+  }
+  .destination.active .dest-side-right .destination-description .dest-desc.active h1 {
+    font-size: 100px;
+  }
+  .destination.active .dest-side-right .destination-infos {
+    justify-content: start;
+  }
+  .destination.active .dest-side-right .destination-infos .distance.active {
+    margin-right: 80px;
+  }
+}
+.crew {
+  display: none;
+}
+
+.crew.active {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  padding: 70px 15px 0;
+  text-align: center;
+}
+.crew.active .crew-first-title {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 100;
+  letter-spacing: 2.35px;
+  margin: 20px 0;
+  opacity: 0;
+  animation: firstTitleAnim 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.crew.active .crew-first-title span {
+  opacity: 0.6;
+  font-weight: 400;
+  color: #D0D6F9;
+  margin-right: 5px;
+}
+.crew.active .crew-block .crew-images .img-crew {
+  display: none;
+}
+.crew.active .crew-block .crew-images .crew-img-active {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  opacity: 0;
+  animation: imgCrewAnim 0.3s 0.2s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.crew.active .crew-block .crew-line {
+  width: 100%;
+  height: 0.5px;
+  background: #fff;
+  opacity: 0.3;
+}
+.crew.active .crew-block .crew-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.crew.active .crew-block .crew-navigation .circle {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  margin: 15px 5px;
+  opacity: 0;
+  animation: scaleAnim 0.3s 0.2s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+  cursor: pointer;
+  transition: background 0.3s ease-out;
+}
+.crew.active .crew-block .crew-navigation .circle:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+.crew.active .crew-block .crew-navigation .circle.active {
+  background: #fff;
+}
+.crew.active .crew-block .crew-text .crew-title, .crew.active .crew-block .crew-text .crew-parag {
+  display: none;
+}
+.crew.active .crew-block .crew-text .crew-title.active, .crew.active .crew-block .crew-text .crew-parag.active {
+  display: block;
+}
+.crew.active .crew-block .crew-text .crew-title.active h2, .crew.active .crew-block .crew-text .crew-parag.active h2 {
+  font-family: "Bellefair", serif;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 16px;
+  color: #D0D6F9;
+  opacity: 0;
+  animation: crewTextTitleAnim 0.3s 0.2s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.crew.active .crew-block .crew-text .crew-title.active h1, .crew.active .crew-block .crew-text .crew-parag.active h1 {
+  font-family: "Bellefair", serif;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 24px;
+  margin-bottom: 15px;
+  opacity: 0;
+  animation: crewTextTitleAnim 0.3s 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.crew.active .crew-block .crew-text .crew-title.active p, .crew.active .crew-block .crew-text .crew-parag.active p {
+  font-size: 15px;
+  color: #D0D6F9;
+  letter-spacing: 1.35px;
+  font-weight: 100;
+  opacity: 0;
+  animation: secondTitleAnim 0.3s 0.2s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+
+@keyframes imgCrewAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes crewTextTitleAnim {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@media screen and (min-width: 700px) {
+  .crew.active .crew-first-title {
+    text-align: start;
+  }
+  .crew.active .crew-block {
+    display: flex;
+    flex-direction: column-reverse;
+    height: calc(100% - 70px);
+  }
+  .crew.active .crew-block .crew-images .crew-img-active {
+    width: 25%;
+  }
+  .crew.active .crew-block .crew-line {
+    display: none;
+  }
+  .crew.active .crew-block .crew-navigation .circle {
+    width: 15px;
+    height: 15px;
+    margin: 15px 10px;
+  }
+  .crew.active .crew-block .crew-text .crew-title.active h2, .crew.active .crew-block .crew-text .crew-parag.active h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .crew.active .crew-block .crew-text .crew-title.active h1, .crew.active .crew-block .crew-text .crew-parag.active h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  .crew.active .crew-block .crew-text .crew-title.active p, .crew.active .crew-block .crew-text .crew-parag.active p {
+    margin-bottom: 40px;
+  }
+}
+@media screen and (min-width: 950px) {
+  .crew.active {
+    width: 100vw;
+  }
+  .crew.active .crew-first-title {
+    margin-left: 80px;
+  }
+  .crew.active .crew-block {
+    width: 50%;
+    text-align: start;
+    margin-left: 80px;
+    justify-content: start;
+    align-items: start;
+  }
+  .crew.active .crew-block .crew-images .crew-img-active {
+    position: absolute;
+    bottom: 0;
+    right: 80px;
+    width: 30%;
+  }
+  .crew.active .crew-block .crew-text .crew-title.active h2, .crew.active .crew-block .crew-text .crew-parag.active h2 {
+    margin-top: 100px;
+    font-size: 32px;
+  }
+  .crew.active .crew-block .crew-text .crew-title.active h1, .crew.active .crew-block .crew-text .crew-parag.active h1 {
+    font-size: 56px;
+  }
+  .crew.active .crew-block .crew-text .crew-title.active p, .crew.active .crew-block .crew-text .crew-parag.active p {
+    font-size: 18px;
+  }
+}
+.technology {
+  display: none;
+}
+
+.technology.active {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  padding: 70px 15px 0;
+  text-align: center;
+}
+.technology.active .tech-first-title {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 100;
+  letter-spacing: 2.35px;
+  margin: 20px 0;
+  opacity: 0;
+  animation: firstTitleAnim 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.technology.active .tech-first-title span {
+  opacity: 0.6;
+  font-weight: 400;
+  color: #D0D6F9;
+  margin-right: 5px;
+}
+.technology.active .tech-img-group-mobile .img-tech-mobile {
+  display: none;
+}
+.technology.active .tech-img-group-mobile .tech-img-active {
+  display: block;
+  width: 100%;
+  margin: 30px 0 50px;
+  opacity: 0;
+  animation: firstTitleAnim 0.3s 0.2s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.technology.active .tech-img-group-desktop {
+  display: none;
+}
+.technology.active .tech-block .tech-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.technology.active .tech-block .tech-navigation .tech-btn {
+  margin: 20px 10px 15px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  padding: 15px 21px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Bellefair", serif;
+  transition: all 0.3s ease-out;
+  opacity: 0;
+  animation: scaleAnim 0.5s 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.technology.active .tech-block .tech-navigation .tech-btn:hover {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+}
+.technology.active .tech-block .tech-navigation .tech-btn.active {
+  background: #fff;
+  color: #0B0D17;
+  font-weight: 600;
+}
+.technology.active .tech-block .tech-text .tech-title, .technology.active .tech-block .tech-text .tech-parag {
+  display: none;
+}
+.technology.active .tech-block .tech-text .tech-title.active, .technology.active .tech-block .tech-text .tech-parag.active {
+  display: block;
+}
+.technology.active .tech-block .tech-text .tech-title.active h2, .technology.active .tech-block .tech-text .tech-parag.active h2 {
+  font-size: 14px;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 1.35px;
+  color: #D0D6F9;
+  opacity: 0;
+  animation: techImgDesktopAndTitleAnim 0.3s 0.2s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.technology.active .tech-block .tech-text .tech-title.active h1, .technology.active .tech-block .tech-text .tech-parag.active h1 {
+  font-family: "Bellefair", serif;
+  text-transform: uppercase;
+  font-weight: 100;
+  font-size: 24px;
+  margin: 15px 0;
+  opacity: 0;
+  animation: techImgDesktopAndTitleAnim 0.3s 0.3s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+.technology.active .tech-block .tech-text .tech-title.active p, .technology.active .tech-block .tech-text .tech-parag.active p {
+  font-size: 15px;
+  color: #D0D6F9;
+  letter-spacing: 1.35px;
+  font-weight: 100;
+  opacity: 0;
+  animation: litleTranslateAnim 0.3s 0.4s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+}
+
+@media screen and (min-width: 700px) {
+  .technology.active .tech-first-title {
+    text-align: start;
+    margin: 10px 0;
+  }
+  .technology.active .tech-img-group-mobile .tech-img-active {
+    margin: 15px 0;
+  }
+  .technology.active .tech-block .tech-navigation .tech-btn {
+    margin: 0 15px 10px;
+  }
+  .technology.active .tech-block .tech-text .tech-title.active h2, .technology.active .tech-block .tech-text .tech-parag.active h2 {
+    font-size: 16px;
+  }
+  .technology.active .tech-block .tech-text .tech-title.active h1, .technology.active .tech-block .tech-text .tech-parag.active h1 {
+    font-size: 35px;
+    margin: 10px 0;
+  }
+}
+@media screen and (min-width: 950px) {
+  .technology.active {
+    width: 100vw;
+  }
+  .technology.active .tech-first-title {
+    margin: 30px 0 10px 80px;
+  }
+  .technology.active .tech-img-group-mobile {
+    display: none;
+  }
+  .technology.active .tech-img-group-desktop {
+    display: block;
+  }
+  .technology.active .tech-img-group-desktop .img-tech-desktop {
+    display: none;
+  }
+  .technology.active .tech-img-group-desktop .tech-img-active {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 35%;
+    opacity: 0;
+    animation: techImgDesktopAndTitleAnim 0.3s 0.2s cubic-bezier(0, 0.75, 0.69, 0.85) forwards;
+  }
+  .technology.active .tech-block {
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+  }
+  .technology.active .tech-block .tech-navigation {
+    flex-direction: column;
+    margin-top: 100px;
+  }
+  .technology.active .tech-block .tech-navigation .tech-btn {
+    margin: 15px 10px;
+  }
+  .technology.active .tech-block .tech-text {
+    width: 45%;
+  }
+  .technology.active .tech-block .tech-text .tech-title.active, .technology.active .tech-block .tech-text .tech-parag.active {
+    margin-left: 20px;
+  }
+  .technology.active .tech-block .tech-text .tech-title.active h2, .technology.active .tech-block .tech-text .tech-parag.active h2 {
+    margin-top: 110px;
+  }
+  .technology.active .tech-block .tech-text .tech-title.active h1, .technology.active .tech-block .tech-text .tech-parag.active h1 {
+    font-size: 56px;
+  }
+  .technology.active .tech-block .tech-text .tech-title.active p, .technology.active .tech-block .tech-text .tech-parag.active p {
+    font-size: 18px;
+  }
+}
+@keyframes techImgDesktopAndTitleAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,14 @@
+@mixin starterPage{
+     display: block;
+     position: absolute;
+     top: 0;
+     left: 0;
+     height: 100vh;
+     padding: 70px 15px 0;
+     text-align: center;
+}
+@mixin titleBig{
+     font-family: $fontFamTitle;
+     text-transform: uppercase;
+     font-weight: 100;
+}
